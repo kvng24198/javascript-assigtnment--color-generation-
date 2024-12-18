@@ -4,26 +4,22 @@ const contentBox = document.querySelector(".content-box");
 const colorGen = document.querySelector(".color-gen");
 const colorBtn = document.querySelector(".color-btn");
 const body = document.querySelector("body");
-const color = [
-  "#FF69B4",
-  "#33CC33",
-  "#6666CC",
-  "#CC3333",
-  "#CCCC33",
-  "#33CCCC",
-  "#CC66CC",
-  "#CCCC66",
-  "#666666",
-  "#CCCCCC",
-];
 
+const letters = "0123456789ABCDEF";
 colorBtn.addEventListener("click", function () {
-  //generate a random number
-  let randomNumber = Math.trunc(Math.random() * 10);
-  //change the backgroundcolor of the body
-  contentBox.style.backgroundColor = color[randomNumber];
-  body.style.backgroundColor = color[randomNumber];
-  colorBtn.style.backgroundColor = color[randomNumber];
-  // display the color value in the div box
-  colorGen.textContent = color[randomNumber];
+  //generate a random color
+
+  const randomCol = generateRandomColor();
+
+  body.style.backgroundColor = randomCol;
+  colorBtn.style.backgroundColor = randomCol;
+  colorGen.textContent = randomCol;
 });
+function generateRandomColor() {
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  console.log(color);
+  return color;
+}
